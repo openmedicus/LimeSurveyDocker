@@ -2,13 +2,13 @@
 
 The LimeSurvey installed on CentOS 7. Will start directly in install mode.
 
-== Pull image ==
+### Pull image
 
 ```
 docker pull openmedicus/limesurvey
 ```
 
-== Using config in container ==
+### Using config in container
 
 ```
 docker run --name=limesurveysetup -p 8080:80 -d openmedicus/limesurvey
@@ -28,7 +28,7 @@ Finally start the docker
 docker run --name=limesurvey -p 8080:80 -d limesurvey
 ```
 
-== Using config file on host ==
+### Using config file on host
 
 ```
 mkdir /www/limesurvey/
@@ -46,7 +46,9 @@ docker run --name=limesurvey -p 8080:80 -v /www/limesurvey/config.php:/var/www/h
 ```
 
 
-== Systemd ==
+### Systemd
+
+/etc/systemd/system/docker-limesurvey.service
 
 ```
 [Unit]
@@ -62,5 +64,12 @@ ExecStopPost=/usr/bin/docker rm -f limesurvey
 
 [Install]
 WantedBy=default.target
+```
+
+Now reload systemd, enable and start
+```
+# systemctl daemon-reload
+# systemctl enable docker-limesurvey
+# systemctl start docker-limesurvey
 ```
 
