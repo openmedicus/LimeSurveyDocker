@@ -1,3 +1,5 @@
+VERSION = 2.54.1
+
 all: build tag push
 
 pull:
@@ -6,9 +8,12 @@ pull:
 build:
 	sudo docker build -t limesurvey .
 
-tag:
-	sudo docker tag limesurvey openmedicus/limesurvey:latest
-
 push:
+	sudo docker tag limesurvey openmedicus/limesurvey:$(VERSION)
 	sudo docker push openmedicus/limesurvey
+	sudo docker tag limesurvey openmedicus/limesurvey:latest
+	sudo docker push openmedicus/limesurvey
+
+run:
+	sudo docker run -i -t limesurvey /bin/bash
 

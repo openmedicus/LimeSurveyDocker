@@ -1,0 +1,14 @@
+[Unit]
+Description=LimeSurvey container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker run --name=limesurvey -p 8080:80 -v /www/limesurvey/config.php:/var/www/html/application/config/config.php:rw openmedicus/limesurvey
+ExecStop=/usr/bin/docker stop -t 2 limesurvey
+ExecStopPost=/usr/bin/docker rm -f limesurvey
+
+[Install]
+WantedBy=default.target
+

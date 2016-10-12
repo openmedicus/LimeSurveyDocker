@@ -1,7 +1,6 @@
 FROM openmedicus/centos-lamp:latest
 MAINTAINER Mikkel Kruse Johnsen <mikkel@xmedicus.com>
 
-ADD limesurvey2.51.4+160908.xz /limesurvey
-RUN mv limesurvey /var/www/html/ ; \
-	chown -R apache:apache /var/www/html/limesurvey
+ADD limesurvey2.54.1+161010.tar.xz /
+RUN mv limesurvey/* /var/www/html/ ; rm -rf /limesurvey ; chown -R apache:apache /var/www/html
 
