@@ -1,6 +1,6 @@
-VERSION = 2.57.1
+VERSION = 2.62.2
 
-all: build tag push
+all: pull build push
 
 pull:
 	sudo docker pull openmedicus/centos-lamp:latest
